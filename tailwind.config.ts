@@ -4,10 +4,10 @@ import { fontFamily } from 'tailwindcss/defaultTheme'
 const config: Config = {
 	content: ['./src/**/*.{ts,tsx}'],
 	theme: {
-		fontFamily: {
-			sans: ['var(--font-inter)', ...fontFamily.sans],
-		},
 		extend: {
+			fontFamily: {
+				sans: ['var(--font-inter)', ...fontFamily.sans],
+			},
 			maxWidth: {
 				'screen-3xl': '1600px',
 			},

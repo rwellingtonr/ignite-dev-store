@@ -1,10 +1,20 @@
 import { api } from '@/app/data/api'
 import type { Product } from '@/contracts/product'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
+export const metadata: Metadata = {
+	title: 'Home',
+}
+
 const getFeaturedProducts = async () => {
-	const result = await api<Product[]>('/products/featured')
+	const result = await api<Product[]>('/products/featured', {
+		next: {
+			revalidate: 60 * 60,
+		},
+	})
+
 	return result
 }
 
@@ -17,7 +27,7 @@ export default async function Home() {
 				<Link
 					key={clothe.image}
 					className={`group relative ${index === 0 ? 'col-span-6 row-span-6' : 'col-span-3 row-span-3'}  grid place-items-center overflow-hidden rounded-lg bg-zinc-900`}
-					href={'#'}
+					href={`product/${clothe.slug}`}
 				>
 					<Image
 						src={clothe.image}

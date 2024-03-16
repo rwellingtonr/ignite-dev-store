@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import { Icon } from '../Icon'
 import Image from 'next/image'
+import { CartWidget } from '../CartWidget'
+import { Search } from '../Search'
 
 export function Header() {
 	return (
@@ -10,26 +11,11 @@ export function Header() {
 					Dev Store
 				</Link>
 
-				<form
-					action=""
-					className="flex w-80 items-center gap-3 rounded-full bg-zinc-900 px-5 py-3 ring-zinc-700"
-				>
-					<Icon name="Search" className="size-5 text-zinc-500" />
-					<input
-						type="text"
-						placeholder="Buscar produtos"
-						className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
-					/>
-				</form>
+				<Search />
 			</div>
 
 			<div className="flex items-center gap-4">
-				<div className="flex items-center gap-2">
-					<Icon className="size-4" name="ShoppingBag" />
-					<span className="text-sm" lang="en">
-						Cart (0)
-					</span>
-				</div>
+				<CartWidget />
 
 				<div className="h-4 w-px bg-zinc-700" />
 
