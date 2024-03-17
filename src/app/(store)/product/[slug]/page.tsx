@@ -13,7 +13,12 @@ type ProductPageProps = {
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
 	const product = await fetchProduct(params.slug)
 	return {
+		metadataBase: new URL('http://localhost:3000'),
 		title: product.title,
+		openGraph: {
+			title: product.title,
+			images: `/og-${product.title.replace(/\s+/g, '_')}.png`,
+		},
 	}
 }
 

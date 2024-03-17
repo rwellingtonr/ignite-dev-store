@@ -9,7 +9,6 @@ export function Search() {
 	const searchParams = useSearchParams()
 
 	const query = searchParams.get('q') ?? ''
-	console.log('🚀 ~ Search ~ query:', query)
 
 	const handleSearchProduct = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
@@ -18,7 +17,7 @@ export function Search() {
 
 		const search = form.get('search')
 		if (search) {
-			router.push(`search?q=${search}`)
+			router.push(`/search?q=${search}`)
 		}
 	}
 

@@ -5,7 +5,6 @@ import { Icon } from '../Icon'
 
 export function CartWidget() {
 	const { items } = useCartContext()
-	console.log('🚀 ~ CartWidget ~ items:', items)
 
 	return (
 		<div className="flex items-center gap-2">
