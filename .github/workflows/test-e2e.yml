@@ -3,6 +3,35 @@ name: Run E2E tests
 on: push
 
 jobs:
+  install:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+          run_install: false
+
+      - name: Cypress install
+        uses: cypress-io/github-action@v6
+        with:
+          # Disable running of tests within install job
+          runTests: false
+          build: pnpm build
+
+      - name: Save build folder
+        uses: actions/upload-artifact@v4
+        env:
+          NEXT_PUBLIC_BASE_URL: 'https://ignite-devstore-api.vercel.app'
+          APP_URL: 'http://localhost:3000'
+        with:
+          name: build
+          if-no-files-found: error
+          path: build
+
   cypress-run:
     runs-on: ubuntu-22.04
     steps:
